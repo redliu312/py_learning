@@ -4,6 +4,7 @@ import shutil
 src = "a.jpe"
 right_jpe="right.jpe"
 wrong_jpe="wrong.jpe"
+wrong_jpe2="wrong2.jpe"
 
 
 def right():
@@ -13,12 +14,20 @@ def right():
             pass
     shutil.copy("a.jpe",right_jpe)
 
+def wrong_temp():
+    f=open("a.jpe","r+")
+    with NamedTemporaryFile(suffix=".jpe",delete=True) as file:
+        for line in f:
+            file.write(line)
+        shutil.copy(file.name,wrong_jpe2)
+
+            
 
 
 def wrong():
     
     f =  open("a.jpe","r+") 
-    
+        
     of = NamedTemporaryFile(suffix='.jpe',delete=False)
     for line in f:
 	of.write(line)
@@ -28,6 +37,8 @@ def wrong():
 def main():
     right()
     wrong()
+
+    wrong_temp()
 
 if __name__ == "__main__":
     main()
