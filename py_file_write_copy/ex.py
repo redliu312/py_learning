@@ -5,7 +5,7 @@ src = "a.jpe"
 right_jpe="right.jpe"
 wrong_jpe="wrong.jpe"
 wrong_jpe2="wrong2.jpe"
-
+right2 = "right2.jpe"
 
 def right():
     
@@ -21,6 +21,13 @@ def wrong_temp():
             file.write(line)
         shutil.copy(file.name,wrong_jpe2)
 
+def wrong_temp_to_wright():
+    f=open("a.jpe","r+")
+    with NamedTemporaryFile(suffix=".jpe",delete=True) as file:
+        for line in f:
+            file.write(line)
+        file.seek(0)
+        shutil.copy(file.name,right2)
             
 
 
@@ -37,7 +44,7 @@ def wrong():
 def main():
     right()
     wrong()
-
+    wrong_temp_to_wright()
     wrong_temp()
 
 if __name__ == "__main__":
