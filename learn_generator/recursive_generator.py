@@ -1,6 +1,14 @@
 #! /bin/python3
 from inspect import isgenerator
 
+def generator2():
+    for i in range(11,20):
+        yield i
+def generator1():
+    for i in range(10):
+        yield i
+    yield generator2()
+
 def iter_over(generators):
     for i in generators:
         if isgenerator(i):
@@ -41,6 +49,10 @@ def main():
     for i in recursive_generator2([1,2,3,4,5]):
         print (i)
     for i in recursive_generator3([1,2,3,4,5]):
+        print (i)
+    print("-----------------------------------")
+    
+    for i in iter_over(generator1()):
         print (i)
 if __name__ == '__main__':
     main()
