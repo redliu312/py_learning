@@ -1,0 +1,5 @@
+{
+  "decorator/test.py": true,
+  "decorator/test.py::test_fancy_p_decorate": true,
+  "learn_iter/test_iter.py::test_it": true
+}
